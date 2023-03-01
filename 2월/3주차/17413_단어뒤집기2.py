@@ -18,23 +18,40 @@ noojkeab enilno egduj
 2. 다들 input 으로 받고,
 3. < 랑 > 만나면 그 사이 문자열은 냅두고, > < 이 사이에 있는 것만 뒤집기
 4. 공백을 기준으로 나눠야 함. (이 걸 찾아보자) split() 이면 되는 건가.
-5. 거꾸로 for (N-1) 로 불러서 하나씩 리스트에 나열하면 될 듯.
+5. 거꾸로 for (N-1) 로 불러서 하나씩 리스트에 나열하면 될 듯.(no)
 6. pop 쓰면 간단함.
 
 나열 된 단어를 하나 꺼내고, 뒤집고, 그 다음 단어 꺼내서 뒤집고, 가능?
-모듈 쓸까..?
+
 '''
-# S = input().split()  # 공백을 기준으로 받음.
-# arr = []
-# while S:  # s에 있을 때까지.
-#     a = S.pop()
-#     arr.append(a)
-#
-#         for j in arr:
+# 문자열, 입력 받고, 특수문자, 공백, 숫자
+S = input()
+
+temp = ''
+ans = ''
+
 for i in S:
-    if i == "<":
+    if i == ' ':
+        if '<' not in temp:
+            ans += temp[::-1] + i
+            temp = ''
+        else:
+            temp += i
 
+    elif i == '<':
+        ans += temp[::-1]
+        temp = ''
+        temp += i
 
+    elif i == '>':
+        ans += temp + i
+        temp = ''
+    else:
+        temp += i
+
+ans += temp[::-1]
+
+print(ans)
 
 
 
